@@ -3,32 +3,28 @@ import { GraduationCap, Mail, Phone, MapPin } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-50 border-t border-gray-100 pt-16 pb-8">
-      <div className="container mx-auto px-4 md:px-6">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+    <footer className="bg-gray-50 border-t border-gray-100 pt-12 md:pt-20 pb-8">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-12 mb-12">
           {/* Brand */}
-          <div className="col-span-1 md:col-span-1">
+          <div className="col-span-1 sm:col-span-2 lg:col-span-1">
             <Link href="/" className="flex items-center space-x-2 mb-6">
-              <div className="bg-primary p-2 rounded-lg">
+              <div className="bg-(--emerald-500) p-2 rounded-lg">
                 <GraduationCap className="text-white w-5 h-5" />
               </div>
-              <span className="font-heading font-bold text-xl tracking-tight text-gray-900">
+              <span className="font-heading font-bold text-xl tracking-tight text-gray-900 uppercase">
                 PACS
               </span>
             </Link>
-            <p className="text-gray-600 text-sm leading-relaxed mb-6">
+            <p className="text-gray-600 text-sm leading-relaxed mb-6 max-w-sm">
               Punjab Academy of Commerce & Sciences (PACS) is dedicated to providing quality education and board exam excellence for Class 8, Matric, and ICS students.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="text-gray-400 hover:text-primary transition-colors">
-                Facebook
-              </a>
-              <a href="#" className="text-gray-400 hover:text-primary transition-colors">
-                Instagram
-              </a>
-              <a href="#" className="text-gray-400 hover:text-primary transition-colors">
-                Twitter
-              </a>
+              {['Facebook', 'Instagram', 'Twitter'].map((social) => (
+                <a key={social} href="#" className="text-gray-400 hover:text-(--emerald-500) text-xs font-bold uppercase tracking-wider transition-colors">
+                  {social}
+                </a>
+              ))}
             </div>
           </div>
 

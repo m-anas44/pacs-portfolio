@@ -3,6 +3,7 @@ import { Inter, Montserrat } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import WhatsAppButton from "@/components/WhatsAppButton";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -27,10 +28,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inter.variable} ${montserrat.variable}`}>
-      <body className="min-h-screen bg-white font-sans text-gray-900 antialiased">
+      <body className="relative min-h-screen bg-white font-sans text-gray-900 antialiased">
         <Header/>
         {children}
         <Footer/>
+        <WhatsAppButton/>
       </body>
     </html>
   );
