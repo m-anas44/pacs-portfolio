@@ -3,7 +3,6 @@
 import { motion, Variants } from "framer-motion";
 import { useState } from "react";
 import Image from "next/image";
-import { ChevronDown } from "lucide-react";
 
 interface Equipment {
   name: string;
@@ -78,12 +77,12 @@ function EquipmentCard({ item }: { item: Equipment }) {
       </div>
 
       {/* Image */}
-      <div className="relative w-full aspect-[4/3] overflow-hidden bg-slate-100">
+      <div className="relative w-full aspect-4/3 overflow-hidden bg-slate-100">
         <Image
           src={item.image}
           alt={item.name}
           fill
-          className="object-cover transition-transform duration-700 group-hover:scale-105 grayscale-[20%] group-hover:grayscale-0"
+          className="object-cover transition-transform duration-700 group-hover:scale-105 grayscale-20 group-hover:grayscale-0"
           sizes="(max-width: 768px) 100vw, 33vw"
         />
         {/* Tint overlay */}
@@ -133,9 +132,9 @@ function EquipmentCard({ item }: { item: Equipment }) {
 
 export default function EquipmentStack() {
   return (
-    <section className="py-24 bg-slate-50 border-b border-slate-100">
+    <section className="py-16 bg-slate-50 border-b border-slate-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-16">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12">
           <div>
             <p className="font-mono text-[10px] uppercase tracking-widest text-slate-400 mb-3">
               Equipment Stack / Rev. 2025

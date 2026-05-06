@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Send, ArrowRight, User, Phone, BookOpen, MessageSquare } from "lucide-react";
+import { ArrowRight, User, Phone, MessageSquare } from "lucide-react";
 
 export default function ContactForm() {
   return (
@@ -48,7 +48,7 @@ export default function ContactForm() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="bg-slate-900 p-8 sm:p-12 rounded-[2rem] border border-slate-800 shadow-2xl relative"
+            className="bg-slate-900 p-8 sm:p-12 rounded-4xl border border-slate-800 shadow-2xl relative"
           >
             <div className="absolute top-0 right-0 w-64 h-64 bg-(--emerald-500) rounded-full blur-[100px] opacity-10 -mr-32 -mt-32" />
             

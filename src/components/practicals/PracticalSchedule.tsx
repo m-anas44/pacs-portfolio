@@ -89,10 +89,6 @@ export default function PracticalSchedule() {
             })}
           </div>
         </div>
-
-        <p className="font-mono text-[9px] text-slate-600 mt-4 uppercase tracking-widest">
-          // Timestamps in PKT (UTC+5) — Schedule subject to change
-        </p>
       </div>
     </section>
   );

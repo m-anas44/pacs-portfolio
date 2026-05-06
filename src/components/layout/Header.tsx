@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, GraduationCap, ChevronRight } from "lucide-react";
+import { Menu, X, GraduationCap, ArrowRight } from "lucide-react";
 
 const links = [
   { name: "Home", href: "/" },
@@ -19,122 +19,131 @@ export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
 
-  // Handle scroll effect
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
+    const handleScroll = () => setScrolled(window.scrollY > 10);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
-    <nav
-      className={`sticky top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled 
-          ? "glass py-3 shadow-lg shadow-emerald-900/5 border-b border-emerald-100/20" 
-          : "bg-transparent py-5 backdrop-blur-md"
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
+    <header
+  className={`sticky top-0 left-0 right-0 w-full z-100 border-b transition-all duration-500 ${
+    scrolled 
+      ? "bg-white/80 backdrop-blur-md border-slate-200 py-3" 
+      : "bg-transparent border-transparent py-6"
+  }`}
+>
+      <div className="max-w-7xl mx-auto px-6">
         <div className="flex items-center justify-between">
           
-          {/* Logo Section */}
-          <Link href="/" className="flex items-center space-x-3 group">
-            <div className="bg-(--emerald-500) p-2 rounded-xl shadow-lg shadow-emerald-200 group-hover:rotate-12 transition-transform duration-300">
-              <GraduationCap className="text-white w-6 h-6" />
+          {/* Logo: The "System" Identity */}
+          <Link href="/" className="flex items-center gap-4 group">
+            <div className="bg-slate-900 p-2 rounded-sm transition-transform duration-500 group-hover:-rotate-90">
+              <GraduationCap className="text-emerald-500 w-5 h-5" />
             </div>
-            <span className="font-heading font-extrabold text-2xl tracking-tighter text-slate-900 uppercase">
-              PACS
-            </span>
+            <div className="flex flex-col">
+              <span className="font-black text-xl tracking-tighter text-slate-900 leading-none">
+                PACS
+              </span>
+              <span className="font-mono text-[8px] font-bold text-emerald-600 tracking-[0.2em] uppercase">
+                Precision_System
+              </span>
+            </div>
           </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-1">
-            {links.map((link) => {
-              const isActive = pathname === link.href;
-              return (
-                <Link
-                  key={link.name}
-                  href={link.href}
-                  className={`relative px-4 py-2 text-sm font-semibold transition-colors duration-300 rounded-full ${
-                    isActive ? "text-(--emerald-600)" : "text-slate-600 hover:text-(--emerald-500)"
-                  }`}
-                >
-                  {link.name}
-                  {isActive && (
-                    <motion.span
-                      layoutId="nav-underline"
-                      className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-1 bg-(--emerald-500) rounded-full"
-                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                    />
-                  )}
-                </Link>
-              );
-            })}
+          {/* Desktop Navigation: Minimalist Dossier Style */}
+          <div className="hidden md:flex items-center gap-2">
+            <nav className="flex items-center bg-slate-50 border border-slate-100 p-1 rounded-sm">
+              {links.map((link) => {
+                const isActive = pathname === link.href;
+                return (
+                  <Link
+                    key={link.name}
+                    href={link.href}
+                    className={`px-5 py-2 text-[10px] font-bold uppercase tracking-widest  transition-all relative ${
+                      isActive ? "text-emerald-600" : "text-slate-400 hover:text-slate-900"
+                    }`}
+                  >
+                    {link.name}
+                    {isActive && (
+                      <motion.div
+                        layoutId="nav-indicator"
+                        className="absolute inset-0 bg-white shadow-sm border border-slate-200 -z-10 rounded-sm"
+                        transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                      />
+                    )}
+                  </Link>
+                );
+              })}
+            </nav>
             
-            <div className="pl-4">
+            <div className="ml-4">
               <Link
                 href="/contact"
-                className="bg-(--emerald-500) text-white px-6 py-2.5 rounded-xl font-heading font-bold text-sm hover:bg-(--emerald-600) hover:shadow-xl hover:shadow-emerald-100 transition-all active:scale-95"
+                className="flex items-center gap-3 bg-emerald-500 text-slate-900 px-6 py-3 rounded-sm font-black text-[10px] uppercase tracking-widest hover:bg-slate-900 hover:text-white transition-all group"
               >
                 Enroll Now
+                <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
               </Link>
             </div>
           </div>
 
-          {/* Mobile Menu Toggle */}
+          {/* Mobile Toggle */}
           <button
-            className="md:hidden p-2 rounded-lg bg-emerald-50 text-(--emerald-600) focus:outline-none"
+            className="md:hidden flex flex-col gap-1.5 p-2"
             onClick={() => setIsOpen(!isOpen)}
           >
-            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            <div className={`h-0.5 bg-slate-900 transition-all duration-300 ${isOpen ? "w-6 rotate-45 translate-y-2" : "w-6"}`} />
+            <div className={`h-0.5 bg-slate-900 transition-all duration-300 ${isOpen ? "opacity-0" : "w-4"}`} />
+            <div className={`h-0.5 bg-slate-900 transition-all duration-300 ${isOpen ? "w-6 -rotate-45 -translate-y-2" : "w-5"}`} />
           </button>
         </div>
       </div>
 
-      {/* Mobile Menu Overlay */}
+      {/* Mobile Drawer: The "Technical Overlay" */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="absolute top-full left-0 right-0 md:hidden bg-white/95 backdrop-blur-xl border-b border-emerald-50 shadow-2xl overflow-hidden"
+            initial={{ x: "100%" }}
+            animate={{ x: 0 }}
+            exit={{ x: "100%" }}
+            transition={{ type: "spring", damping: 25, stiffness: 200 }}
+            className="fixed inset-y-0 right-0 w-full max-w-xs bg-white border-l border-slate-200 z-110 p-10 flex flex-col shadow-2xl"
           >
-            <div className="flex flex-col p-6 space-y-2">
+            <div className="flex justify-end mb-12">
+              <button onClick={() => setIsOpen(false)} className="text-slate-400 hover:text-slate-900">
+                <X className="w-8 h-8" />
+              </button>
+            </div>
+
+            <div className="flex flex-col gap-8">
               {links.map((link, i) => (
-                <motion.div
-                  initial={{ x: -20, opacity: 0 }}
-                  animate={{ x: 0, opacity: 1 }}
-                  transition={{ delay: i * 0.05 }}
-                  key={link.name}
-                >
-                  <Link
-                    href={link.href}
-                    className={`flex items-center justify-between p-4 rounded-xl text-sm font-bold ${
-                      pathname === link.href 
-                        ? "bg-emerald-50 text-(--emerald-600)" 
-                        : "text-slate-600 active:bg-emerald-50"
-                    }`}
-                    onClick={() => setIsOpen(false)}
-                  >
-                    {link.name}
-                    <ChevronRight className={`w-5 h-5 ${pathname === link.href ? "opacity-100" : "opacity-0"}`} />
-                  </Link>
-                </motion.div>
-              ))}
-              <div className="pt-4">
                 <Link
-                  href="/contact"
-                  className="block w-full bg-(--emerald-500) text-white px-6 py-4 rounded-2xl font-heading font-extrabold text-center text-lg shadow-lg shadow-emerald-100"
+                  key={link.name}
+                  href={link.href}
                   onClick={() => setIsOpen(false)}
+                  className="group"
                 >
-                  Enroll Now
+                  <p className="text-[10px] font-bold text-emerald-500 mb-1">0{i + 1}_</p>
+                  <p className="text-3xl font-black text-slate-900 tracking-tighter group-hover:pl-4 transition-all duration-300">
+                    {link.name}
+                  </p>
                 </Link>
-              </div>
+              ))}
+            </div>
+
+            <div className="mt-auto">
+              <Link
+                href="/contact"
+                onClick={() => setIsOpen(false)}
+                className="block w-full bg-slate-900 text-white text-center py-5 font-bold uppercase tracking-widest text-xs"
+              >
+                Enroll Now
+              </Link>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
-    </nav>
+    </header>
   );
 }

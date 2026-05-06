@@ -2,88 +2,141 @@
 
 import { motion, Variants } from "framer-motion";
 import Image from "next/image";
+import { ShieldCheck, Target, Zap, ChevronRight } from "lucide-react";
 
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { staggerChildren: 0.1, delayChildren: 0.1 }
-  }
+    transition: { staggerChildren: 0.12, delayChildren: 0.2 },
+  },
 };
 
 const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 10 },
-  visible: { 
-    opacity: 1, 
+  hidden: { opacity: 0, y: 15 },
+  visible: {
+    opacity: 1,
     y: 0,
-    transition: { duration: 0.4, ease: "easeOut" }
-  }
+    transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
+  },
 };
 
 export default function AboutHero() {
   return (
-    <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 overflow-hidden border-b border-slate-100">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          {/* Left Content */}
-          <motion.div 
+    <section className="relative py-8 md:py-14 overflow-hidden bg-white">
+      {/* Background Layering */}
+      <div className="absolute inset-0 opacity-[0.03] pointer-events-none " />
+      <div className="absolute inset-0 bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] bg-size-[32px_32px] opacity-40" />
+
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+          {/* Left: Tactical Narrative (7 Columns) */}
+          <motion.div
             variants={containerVariants}
             initial="hidden"
             animate="visible"
-            className="max-w-2xl"
+            className="lg:col-span-7"
           >
-            <motion.div variants={itemVariants} className="mb-6 flex items-center gap-3">
-              <div className="h-[1px] w-8 bg-(--emerald-500)" />
-              <span className="text-[10px] font-bold uppercase tracking-widest text-slate-500">The Origin</span>
-            </motion.div>
-            
-            <motion.h1 
+            <motion.div
               variants={itemVariants}
-              className="font-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-[1.1] mb-6"
+              className="flex items-center gap-3 mb-4"
             >
-              Engineering <br/>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-(--emerald-600) to-(--emerald-400)">
-                Academic Excellence.
+              <div className="px-2 py-1 text-emerald-500 font-mono text-xs uppercase tracking-wider bg-slate-900 rounded-sm">
+                The Origin
+              </div>
+              <div className="h-px w-10 bg-slate-100" />
+              <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400">
+                Est. 2022 / PACS
               </span>
-            </motion.h1>
-            
-            <motion.p 
+            </motion.div>
+
+            <motion.h1
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.2 }}
+            className="font-heading text-4xl md:text-6xl font-black tracking-tighter text-slate-900 mb-8"
+          >
+             <span className="text-transparent bg-clip-text bg-linear-to-r from-slate-900 via-emerald-600 to-slate-900">
+            Architecting <br />
+            </span>
+            Academic Mastery.
+          </motion.h1>
+
+            <motion.p
               variants={itemVariants}
-              className="text-slate-600 text-sm sm:text-base leading-relaxed mb-10 max-w-lg"
+              className="text-slate-500 text-base md:text-lg leading-relaxed mb-12 max-w-xl font-medium border-l-2 border-emerald-500 pl-8"
             >
-              Founded by Sir Usama, PACS was built to bridge the gap between rote learning and true conceptual clarity. We treat academic preparation as a precise science—optimizing for both understanding and high-performance board results.
+              Founded by Sir Usama, PACS was engineered to dismantle rote
+              learning. We treat education as a precise science—decoding complex
+              board requirements into high-performance frameworks.
             </motion.p>
-            
-            <motion.div 
+
+            {/* The Directive (Mission) */}
+            <motion.div
               variants={itemVariants}
-              className="p-6 border border-slate-100 rounded-xl bg-slate-50/50 shadow-sm relative overflow-hidden"
+              className="relative p-8 bg-slate-900 border border-slate-800 shadow-2xl overflow-hidden group"
             >
-              <div className="absolute top-0 left-0 w-1 h-full bg-(--emerald-500)" />
-              <p className="text-xs uppercase tracking-widest text-slate-400 font-bold mb-2">Mission Statement</p>
-              <p className="text-sm font-medium text-slate-800 leading-relaxed">
-                "To architect an educational environment where complex concepts are decoded into logical, retainable frameworks, guaranteeing intellectual growth and supreme academic outcomes."
-              </p>
+              <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                <Target className="w-20 h-20 text-white" />
+              </div>
+
+              <div className="relative z-10">
+                <div className="flex items-center gap-2 mb-4">
+                  <ShieldCheck className="w-4 h-4 text-emerald-400" />
+                  <p className="text-[10px] uppercase tracking-[0.2em] text-emerald-400 font-black">
+                    Core Directive
+                  </p>
+                </div>
+                <p className="text-base font-bold text-white leading-relaxed tracking-tight">
+                  "To decode complex concepts into logical, retainable
+                  frameworks, guaranteeing intellectual growth and supreme board
+                  outcomes."
+                </p>
+              </div>
             </motion.div>
           </motion.div>
-          
-          {/* Right Visual */}
+
+          {/* Right: Founder Profile (5 Columns) */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
-            className="relative lg:ml-auto w-full max-w-md aspect-[4/5] rounded-2xl overflow-hidden border border-slate-200 shadow-2xl shadow-slate-200/50 grayscale hover:grayscale-0 transition-all duration-700"
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7, delay: 0.4 }}
+            className="lg:col-span-5 relative"
           >
-            <div className="absolute inset-0 bg-slate-900 mix-blend-multiply opacity-20 z-10 transition-opacity duration-700 hover:opacity-0" />
-            <Image 
-              src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=800" 
-              alt="Sir Usama - Founder of PACS"
-              fill
-              className="object-cover object-top"
-              sizes="(max-width: 768px) 100vw, 400px"
-            />
-            <div className="absolute bottom-4 left-4 right-4 z-20 glass p-3 sm:p-4 rounded-xl border border-white/20">
-               <p className="text-[10px] uppercase tracking-widest text-white/70 font-bold mb-1">Founder & CEO</p>
-               <p className="text-white font-heading font-bold text-sm sm:text-base">Sir Usama</p>
+            {/* Technical Frame Accents */}
+            <div className="absolute -top-4 -right-4 w-24 h-24 border-t-2 border-r-2 border-emerald-500/20" />
+            <div className="absolute -bottom-4 -left-4 w-24 h-24 border-b-2 border-l-2 border-slate-200" />
+
+            <div className="relative aspect-4/5 overflow-hidden grayscale hover:grayscale-0 transition-all duration-700 shadow-2xl group">
+              <Image
+                src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=800"
+                alt="Sir Usama"
+                fill
+                className="object-cover scale-105 group-hover:scale-100 transition-transform duration-700"
+              />
+
+              {/* Profile Overlay */}
+              <div className="absolute inset-0 bg-linear-to-t from-slate-900 via-transparent to-transparent opacity-60" />
+
+              <div className="absolute bottom-0 left-0 right-0 p-8">
+                <div className="bg-white/5 backdrop-blur-md border border-white/20 p-6">
+                  <p className="text-[10px] uppercase tracking-[0.3em] text-emerald-400 font-black mb-1">
+                    Founder / CEO
+                  </p>
+                  <h3 className="text-xl font-black text-white tracking-tighter">
+                    Sir Usama
+                  </h3>
+                </div>
+              </div>
+            </div>
+
+            {/* Float Badge */}
+            <div className="absolute -right-8 top-1/4 bg-white p-4 shadow-xl border border-slate-100 hidden xl:block">
+              <Zap className="w-5 h-5 text-emerald-500 mb-2" />
+              <p className="text-[10px] font-black uppercase text-slate-400">
+                Result Focus
+              </p>
+              <p className="text-sm font-bold text-slate-900">100% Logic</p>
             </div>
           </motion.div>
         </div>

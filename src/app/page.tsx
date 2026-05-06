@@ -7,11 +7,11 @@ import SuccessMarquee from "@/components/landing/SuccessMarque";
 export default function Home() {
   return (
     <div>
-      <HeroSection/>
-      <ClassesGrid/>
+      <HeroSection />
+      <ClassesGrid />
       <WhyUs />
-      <SuccessMarquee/>
-      <ContactHub/>
+      <SuccessMarquee />
+      <ContactHub />
     </div>
   );
 }

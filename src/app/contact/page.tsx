@@ -5,14 +5,22 @@ import FAQSection from "@/components/contact/FAQSection";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Contact Us | Punjab Academy of Science",
-  description: "Get in touch with Punjab Academy of Science. Find our campuses, contact details, and answers to your questions.",
-  keywords: ["contact PACS", "PACS Lahore", "PACS Contact Number", "PACS Email Address", "PACS Address"],
+  title: "Contact Us | Punjab Academy of Commerce & Sciences",
+  description:
+    "Get in touch with Punjab Academy of Commerce & Sciences. Find our campuses, contact details, and answers to your questions.",
+  keywords: [
+    "contact PACS",
+    "PACS Lahore",
+    "PACS Contact Number",
+    "PACS Email Address",
+    "PACS Address",
+  ],
   openGraph: {
-    title: "Contact Us | Punjab Academy of Science",
-    description: "Get in touch with Punjab Academy of Science. Find our campuses, contact details, and answers to your questions.",
-    url: "https://pacs.edu.pk/contact",
-    siteName: "Punjab Academy of Science",
+    title: "Contact Us | Punjab Academy of Commerce & Sciences",
+    description:
+      "Get in touch with Punjab Academy of Commerce & Sciences. Find our campuses, contact details, and answers to your questions.",
+    url: "https://pacs-portfolio.vercel.app/contact",
+    siteName: "Punjab Academy of Commerce & Sciences",
     images: [
       {
         url: "/assets/images/contact.jpg",
@@ -24,22 +32,15 @@ export const metadata: Metadata = {
     locale: "en_US",
     type: "website",
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Contact Us | Punjab Academy of Science",
-    description: "Get in touch with Punjab Academy of Science. Find our campuses, contact details, and answers to your questions.",
-    creator: "@pacs",
-    images: ["/assets/images/contact.jpg"],
-  },
 };
 
 export default function ContactPage() {
   return (
     <>
-    <ContactHero/>
-    <ContactForm/>
-    <ContactInfo/>
-    <FAQSection/>
+      <ContactHero />
+      <ContactForm />
+      <ContactInfo />
+      <FAQSection />
     </>
-  )
+  );
 }
